@@ -1,11 +1,18 @@
 const jwt = require("jsonwebtoken");
 const mongoose = require("mongoose");
+const validateRegister = require("../validations/validateRegister");
+const validateLogin = require("../validations/validateLogin");
 
 const User = mongoose.model("users");
 
 exports.handleRegister = async (req, res) => {
-  // TODO:
-  // Validate Input
+  const validationResult = validateRegister(req.body);
+  if (!validationResult.success) {
+    return res.status(400).json({
+      type: "validation",
+      errors: validationResult.errors
+    });
+  }
 
   try {
     const existingUser = await User.findOne({ email: req.body.email });
@@ -28,8 +35,13 @@ exports.handleRegister = async (req, res) => {
 };
 
 exports.handleLogin = async (req, res) => {
-  // TODO:
-  // Validate Input
+  const validationResult = validateLogin(req.body);
+  if (!validationResult.success) {
+    return res.status(400).json({
+      type: "validation",
+      errors: validationResult.errors
+    });
+  }
 
   try {
     const { email, password } = req.body;
