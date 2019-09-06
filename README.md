@@ -1,11 +1,27 @@
-# express-basic-boilerplate
-Boilerplate for express server with mongodb, eslint and nodemon.
+# McKinley & Rice Node.js Task Solution
 
-## Getting Started
+## How to run locally
 
 ```
-$ git clone https://github.com/anku255/express-basic-boilerplate.git
-$ cd express-basic-boilerplate
+$ cd into the project dir
 $ npm install
 $ npm start
+
+The server runs on port 5000.
+```
+
+## APIs
+
+```
+1. POST `/api/register`
+
+body = {email, password}
+
+returns error or success message
+
+2. POST `/api/login`
+
+body = {email, password}
+
+returns error or JWT Auth Token
 ```
